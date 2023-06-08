@@ -1,3 +1,4 @@
+import json
 from flask import Flask , request, abort
 from flask_sqlalchemy import SQLAlchemy
 
@@ -26,7 +27,12 @@ class Movie(db.Model):
     def to_json(self):
        return {"id":self.id,"title":self.title,"description":self.description,"release_year":self.release_year}
 
-
+def seed(json_file):
+    with open(json_file, 'r') as f:
+        data = json.load(f)
+    for item in data:
+        db.session.add(Movie(*scrape_body(item)))
+    db.session.commit()
 
 
 def scrape_body(body):
