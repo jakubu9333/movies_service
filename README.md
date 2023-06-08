@@ -17,9 +17,10 @@ Run init.py to create database
 ```bash
 python init.py
 ```
-Run with flask
+Run app.py
 ```bash
-flask run```
+python app.py
+```
 
 ### Docker
 ```bash
@@ -28,4 +29,5 @@ docker run -p 5000:5000 --name customname customname
  ```
 
 In both ways application will open on localhost:5000
+
 
