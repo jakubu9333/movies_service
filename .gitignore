@@ -1,1 +1,4 @@
 virtualPython
+instance
+__pycache__
+.vscode
