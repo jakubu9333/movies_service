@@ -1,4 +1,4 @@
-from flask import Flask , request, jsonify
+from flask import Flask , request, abort
 from flask_sqlalchemy import SQLAlchemy
 
 app= Flask(__name__)
@@ -30,6 +30,8 @@ class Movie(db.Model):
 
 
 def scrape_body(body):
+    if (body.get("title",None)==None or  body.get("description",None)==None or body.get("release_year",None)==None):
+        abort(400)
     return body["title"],body["description"],body["release_year"]
 
 
@@ -59,8 +61,6 @@ def edit_movie(id):
 
 
 if __name__=="__main__":
-    with app.app_context():
-        db.create_all()
     app.run()
 
 
